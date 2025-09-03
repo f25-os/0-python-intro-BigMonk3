@@ -20,9 +20,9 @@ assignment is to create a python program which:
 
 We encourage you to utilize the re regular expression library and python dictionaries in your program.
 
-# MY NOTES
-* sys calls to be used:
-* * file = os.open(name, mode)
-* * os.write(file, array)
-* * os.read(file, #bytes)
+### MY NOTES
+sys calls to be used:
+* file = os.open(name, mode)
+* os.write(file, array)
+* os.read(file, #bytes)
 
