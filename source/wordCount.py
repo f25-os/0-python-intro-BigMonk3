@@ -8,7 +8,7 @@ import re
 wordList = {}
 data = b""
 buffer = ""
-loopCounter = 1
+loopCounter = 0
 
 if len(sys.argv) < 3:
     print("wordCount: invalid args\n"
@@ -18,17 +18,13 @@ if len(sys.argv) < 3:
 inputFileName = sys.argv[1]
 outputFileName = sys.argv[2]
 
-print("INPUT: %s\nOUTPUT: %s" % (inputFileName, outputFileName))
-
 inputFD = os.open(inputFileName, os.O_RDONLY)
-print("Reading Input")
 
 while True:
     data = os.read(inputFD, 1024)  # 1KB at a time
     if not data:
         break  # EOF
 
-    print(str(loopCounter) + "KB read")
     loopCounter += 1
 
     buffer += data.decode("utf-8")
@@ -47,14 +43,12 @@ while True:
         else:
             wordList[word] += 1
 
-
+print("~%dKB processed" % (loopCounter))
 os.close(inputFD)
-print("Input Closed")
 
 keyOrder = list(wordList.keys())
 keyOrder.sort()
 outputFD = os.open(outputFileName, os.O_WRONLY | os.O_CREAT | os.O_APPEND)
-print("Writing Output")
 
 for word in keyOrder:
     entry = "%s %d\n" % (word, wordList[word])
@@ -62,4 +56,4 @@ for word in keyOrder:
     os.write(outputFD, data)
 
 os.close(outputFD)
-print("Output closed")
+print("%d entries written to '%s'" % (len(wordList), outputFileName))
