@@ -11,10 +11,10 @@ assignment is to create a python program which:
 * example
 
 `$ python wordCount.py input.txt output.txt`
-[x] keeps track of the total the number of times each word occurs in the text file 
-[x] excluding white space and punctuation
-[x] is case-insensitive
-[x] print out to the output file (overwriting if it exists) the list of
+- [x] keeps track of the total the number of times each word occurs in the text file 
+- [x] excluding white space and punctuation
+- [x] is case-insensitive
+- [x] print out to the output file (overwriting if it exists) the list of
   words sorted in descending order with their respective totals
   separated by a space, one word per line
 
