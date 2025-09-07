@@ -48,7 +48,7 @@ os.close(inputFD)
 
 keyOrder = list(wordList.keys())
 keyOrder.sort()
-outputFD = os.open(outputFileName, os.O_WRONLY | os.O_CREAT | os.O_APPEND)
+outputFD = os.open(outputFileName, os.O_WRONLY | os.O_CREAT | os.O_TRUNC)
 
 for word in keyOrder:
     entry = "%s %d\n" % (word, wordList[word])
