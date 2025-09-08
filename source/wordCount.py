@@ -11,8 +11,9 @@ buffer = ""
 loopCounter = 0
 
 if len(sys.argv) < 3:
-    print("wordCount: invalid args\n"
-          + "usage: wordCount [input file...] [output file...]")
+    errMsg = ("wordCount: invalid args\n" +
+              "usage: wordCount [input file...] [output file...]\n")
+    os.write(1, errMsg.encode("utf-8"))
     exit(1)
 
 inputFileName = sys.argv[1]
@@ -43,7 +44,9 @@ while True:
         else:
             wordList[word] += 1
 
-print("~%dKB processed" % (loopCounter))
+progMsg = ("~%dKB processed\n" % (loopCounter))
+os.write(1, progMsg.encode("utf-8"))
+
 os.close(inputFD)
 
 keyOrder = list(wordList.keys())
@@ -56,4 +59,8 @@ for word in keyOrder:
     os.write(outputFD, data)
 
 os.close(outputFD)
-print("%d entries written to '%s'" % (len(wordList), outputFileName))
+
+doneMsg = ("%d entries written to '%s'\n" % (len(wordList), outputFileName))
+os.write(1, doneMsg.encode("utf-8"))
+
+exit(0)
